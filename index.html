@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>CSS hack</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<style>
+      body {
+        background-color: #faf8f1;
+      }
+			.dynamic-block { /* Default for Chrome and others */
+        color: #fff;
+        background: #000;
+			}
+			.dynamic-block.safari { /* Override for Safari */
+				color: #000;
+        background: #fff;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container max-w-[920px] mx-auto my-12 px-8">
+			<div class="w-full">
+				<h1 class="mb-4 py-4 text-3xl font-semibold text-center">
+					Do you know CSS hacks?
+				</h1>
+				<p class="py-4 text-xl">
+					<b class="font-semibold">A CSS hack</b> is a coding technique used to hide or show CSS markup
+					depending on the browser, version number, or capabilities. Browsers
+					have different interpretations of CSS behavior and different levels of
+					support for the W3C standards. <a class="ms-4 text-sky-500" href="https://en.wikipedia.org/wiki/CSS_hack">Wikipedia</a>
+				</p>
+			</div>
+
+      <p class="py-4 text-xl">Open this page in Chrome and Safari browsers respectively and look at this block 👇. What's the difference?</p>
+
+      <div class="dynamic-block mb-12 w-full px-12 py-8 text-xl rounded-xl border border-slate-200">
+        <p>
+          Chrome: color: #fff; background-color: #000; <br />
+          Safari: color: #000; background-color: #fff;
+        </p>
+      </div>
+
+      <div>
+<pre class="px-8 overflow-x-auto rounded-xl bg-slate-700 text-slate-100">
+<code>
+<span class="text-slate-500">&lt;</span><span class="text-sky-500">style</span><span class="text-slate-500">&gt;</span>
+  <span class="text-yellow-500">.dynamic-block</span>
+  <span class="text-yellow-500">{</span> <span class="text-slate-400">/* Default for Chrome and others */</span>
+    color: #fff;
+    background: #000;
+  <span class="text-yellow-500">}</span> <span class="text-slate-400">/* Override for Safari */</span>
+  <span class="text-yellow-500">.dynamic-block.safari</span> <span class="text-yellow-500">{</span>
+    color: #000;
+    background: #fff;
+  <span class="text-yellow-500">}</span>
+<span class="text-sky-500"><span class="text-slate-500">&lt;/</span>style</span><span class="text-slate-500">&gt;</span>
+
+<span class="text-sky-500"><span class="text-slate-500">&lt;</span>div <span class="text-sky-300">class</span><span class="text-slate-100">=</span><span class="text-amber-500">"dynamic-block"</span></span><span class="text-slate-500">&gt;</span>
+  This is a dynamic block.
+<span class="text-sky-500"><span class="text-slate-500">&lt;/</span>div</span><span class="text-slate-500">&gt;</span>
+
+<span class="text-sky-500"><span class="text-slate-500">&lt;</span>script</span><span class="text-slate-500">&gt;</span>
+  <span class="text-slate-400">// Function to detect Safari</span>
+  <span class="text-sky-500">function</span> <span class="text-yellow-300">isSafari</span><span class="text-yellow-500">()</span> <span class="text-yellow-500">{</span>
+    <span class="text-purple-500">return</span> /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+  <span class="text-yellow-500">}</span>
+
+  <span class="text-slate-400">// Apply Safari-specific class if needed</span>
+  if (<span class="text-yellow-300">isSafari</span><span class="text-yellow-500">()</span>) <span class="text-yellow-500">{</span>
+    <span class="text-purple-500">document</span>.querySelector('.dynamic-block').classList.add('safari');
+  <span class="text-yellow-500">}</span>
+<span class="text-sky-500"><span class="text-slate-500">&lt;/</span>script</span><span class="text-slate-500">&gt;</span>
+</code>
+</pre>
+      </div>
+
+      <p class="mt-12 text-center text-slate-700">Made with ❤️ by <a target="_blank" rel="noreferrer" class="font-semibold" href="https://github.com/peppapig13132">Pepp</a></p>
+		</div>
+
+		<script>
+			// Function to detect Safari
+			function isSafari() {
+				return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+			}
+
+			// Apply Safari-specific class if needed
+			if (isSafari()) {
+				document.querySelector('.dynamic-block').classList.add('safari');
+			}
+		</script>
+	</body>
+</html>
